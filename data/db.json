@@ -1,10 +1,12 @@
 {
     "ids": {
-        "Cliente": 1
+        "Cliente": 2,
+        "Plano": 2
     },
     "models": {
         "Cliente": {
             "1": "{\"email\":\"lucasrochabr@outlook.com\",\"nome\":\"Lucas Rocha\", \"senha\":\"$2b$10$aDYFA6kIQSEExGfrUzseCO/uNgrUT4rmwbsttP7rYhE.ETngw2wH2\"}"
-        }
+        },
+        "Plano": {}
     }
 }
