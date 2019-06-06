@@ -16,20 +16,22 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
-import {Cliente} from '../models';
-import {ClienteRepository} from '../repositories';
+import { Cliente, Assinatura } from '../models';
+import { ClienteRepository, AssinaturaRepository } from '../repositories';
 
 export class ClienteController {
   constructor(
     @repository(ClienteRepository)
-    public clienteRepository : ClienteRepository,
-  ) {}
+    public clienteRepository: ClienteRepository,
+    @repository(AssinaturaRepository)
+    public assinaturaRepository: AssinaturaRepository,
+  ) { }
 
   @post('/clientes', {
     responses: {
       '200': {
         description: 'Cliente model instance',
-        content: {'application/json': {schema: {'x-ts-type': Cliente}}},
+        content: { 'application/json': { schema: { 'x-ts-type': Cliente } } },
       },
     },
   })
@@ -41,7 +43,7 @@ export class ClienteController {
     responses: {
       '200': {
         description: 'Cliente model count',
-        content: {'application/json': {schema: CountSchema}},
+        content: { 'application/json': { schema: CountSchema } },
       },
     },
   })
@@ -57,7 +59,7 @@ export class ClienteController {
         description: 'Array of Cliente model instances',
         content: {
           'application/json': {
-            schema: {type: 'array', items: {'x-ts-type': Cliente}},
+            schema: { type: 'array', items: { 'x-ts-type': Cliente } },
           },
         },
       },
@@ -73,7 +75,7 @@ export class ClienteController {
     responses: {
       '200': {
         description: 'Cliente PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
+        content: { 'application/json': { schema: CountSchema } },
       },
     },
   })
@@ -88,7 +90,7 @@ export class ClienteController {
     responses: {
       '200': {
         description: 'Cliente model instance',
-        content: {'application/json': {schema: {'x-ts-type': Cliente}}},
+        content: { 'application/json': { schema: { 'x-ts-type': Cliente } } },
       },
     },
   })
@@ -133,5 +135,21 @@ export class ClienteController {
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.clienteRepository.deleteById(id);
+  }
+
+  @post('/clientes/sign', {
+    responses: {
+      '200': {
+        description: 'Cliente model instance',
+        content: { 'application/json': { schema: { 'x-ts-type': Cliente } } },
+      },
+    },
+  })
+  async sign(@requestBody() data: Assinatura): Promise<Cliente> {
+    let cliente: Cliente = Object.assign({}, data.cliente);
+    cliente.cartao = data.cartao;
+    cliente = await this.clienteRepository.create(cliente);
+    this.assinaturaRepository.create(data);
+    return cliente;
   }
 }

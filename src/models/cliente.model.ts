@@ -1,6 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
+import { Entity, model, property } from '@loopback/repository';
+import { Cartao } from '.';
 
-@model({settings: {}})
+@model({ settings: {} })
 export class Cliente extends Entity {
   @property({
     type: 'string',
@@ -16,15 +17,9 @@ export class Cliente extends Entity {
   email: string;
 
   @property({
-    type: 'string',
-    required: true,
-  })
-  senha: string;
-
-  @property({
     type: 'object',
   })
-  cartao?: object;
+  cartao?: Cartao;
 
 
   constructor(data?: Partial<Cliente>) {

@@ -1,12 +1,14 @@
 {
     "ids": {
+        "Assinatura": 1,
         "Cliente": 2,
         "Plano": 1,
         "Promocao": 1
     },
     "models": {
+        "Assinatura": {},
         "Cliente": {
-            "1": "{\"email\":\"lucasrochabr@outlook.com\",\"nome\":\"Lucas Rocha\", \"senha\":\"$2b$10$aDYFA6kIQSEExGfrUzseCO/uNgrUT4rmwbsttP7rYhE.ETngw2wH2\"}"
+            "1": "{\"email\":\"lucasrochabr@outlook.com\",\"nome\":\"Lucas Rocha\"}"
         },
         "Plano": {},
         "Promocao": {}
