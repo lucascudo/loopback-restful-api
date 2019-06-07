@@ -23,6 +23,19 @@
           "customer"
         ]
       }
+    },
+    {
+      "template": {
+        "method": "POST",
+        "url": "https://api.mundipagg.com/core/v1/orders",
+        "body": "{order}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "createOrder": [
+          "order"
+        ]
+      }
     }
   ]
 }

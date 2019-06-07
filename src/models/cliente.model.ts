@@ -1,5 +1,5 @@
 import {Entity, model, property} from '@loopback/repository';
-import {Cartao} from '.';
+import {Cartao, MundipaggCustomer} from '.';
 
 @model({settings: {}})
 export class Cliente extends Entity {
@@ -24,7 +24,14 @@ export class Cliente extends Entity {
   @property({
     type: 'object',
   })
-  mundipaggCustomer?: object;
+  mundipaggCustomer: MundipaggCustomer;
+
+  @property({
+    type: 'array',
+    itemType: 'object',
+    default: [],
+  })
+  orders: Array<object>;
 
   constructor(data?: Partial<Cliente>) {
     super(data);

@@ -1,15 +1,11 @@
 import {getService, juggler} from '@loopback/service-proxy';
 import {inject, Provider} from '@loopback/core';
 import {MundipaggDataSource} from '../datasources/mundipagg.datasource';
-
-export interface Mundipagg {
-  id: string;
-  name: string;
-  email: string;
-}
+import {MundipaggCustomer} from '../models';
 
 export interface MundipaggService {
-  createCustomer(customer: object): Promise<Mundipagg[]>;
+  createCustomer(customer: object): Promise<MundipaggCustomer>;
+  createOrder(order: object): Promise<object>;
 }
 
 export class MundipaggServiceProvider implements Provider<MundipaggService> {

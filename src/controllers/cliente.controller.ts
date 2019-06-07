@@ -19,7 +19,11 @@ import {
 } from '@loopback/rest';
 import {inject} from '@loopback/core';
 import {Cliente, Assinatura} from '../models';
-import {ClienteRepository, AssinaturaRepository} from '../repositories';
+import {
+  ClienteRepository,
+  AssinaturaRepository,
+  PlanoRepository,
+} from '../repositories';
 import {MundipaggService} from '../services';
 
 export class ClienteController {
@@ -28,6 +32,8 @@ export class ClienteController {
     public clienteRepository: ClienteRepository,
     @repository(AssinaturaRepository)
     public assinaturaRepository: AssinaturaRepository,
+    @repository(PlanoRepository)
+    public planoRepository: PlanoRepository,
     @inject('services.MundipaggService')
     protected mundipaggService: MundipaggService,
   ) {}
@@ -165,6 +171,33 @@ export class ClienteController {
     cliente.mundipaggCustomer = await this.mundipaggService.createCustomer({
       name: cliente.nome,
       email: cliente.email,
+    });
+    await data.produtos.forEach(async produto => {
+      if (produto.tipo === 'plano') {
+        const plano = await this.planoRepository.findById(produto.plano_id);
+        const mundipaggOrder = await this.mundipaggService.createOrder({
+          customer_id: cliente.mundipaggCustomer.id,
+          items: [
+            {
+              amount: plano.preco,
+              description: plano.nome,
+              quantity: 1,
+            },
+          ],
+          payments: [
+            {
+              payment_method: 'credit_card',
+              credit_card: {
+                recurrence: true,
+                installments: 1,
+                statement_descriptor: 'SANARFLIX',
+                card: cliente.cartao,
+              },
+            },
+          ],
+        });
+        cliente.orders.push(mundipaggOrder);
+      }
     });
     cliente = await this.clienteRepository.create(cliente);
     this.assinaturaRepository.create(data);
