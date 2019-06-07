@@ -1,7 +1,7 @@
-import { Entity, model, property } from '@loopback/repository';
-import { Cartao } from '.';
+import {Entity, model, property} from '@loopback/repository';
+import {Cartao} from '.';
 
-@model({ settings: {} })
+@model({settings: {}})
 export class Cliente extends Entity {
   @property({
     type: 'string',
@@ -20,7 +20,6 @@ export class Cliente extends Entity {
     type: 'object',
   })
   cartao?: Cartao;
-
 
   constructor(data?: Partial<Cliente>) {
     super(data);

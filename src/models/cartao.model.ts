@@ -1,6 +1,6 @@
-import { Entity, model, property } from '@loopback/repository';
+import {Entity, model, property} from '@loopback/repository';
 
-@model({ settings: {} })
+@model({settings: {}})
 export class Cartao extends Entity {
   @property({
     type: 'string',

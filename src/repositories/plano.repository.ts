@@ -8,9 +8,7 @@ export class PlanoRepository extends DefaultCrudRepository<
   typeof Plano.prototype.id,
   PlanoRelations
 > {
-  constructor(
-    @inject('datasources.db') dataSource: DbDataSource,
-  ) {
+  constructor(@inject('datasources.db') dataSource: DbDataSource) {
     super(Plano, dataSource);
   }
 }

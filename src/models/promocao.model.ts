@@ -22,7 +22,6 @@ export class Promocao extends Entity {
   })
   condicoes: object;
 
-
   constructor(data?: Partial<Promocao>) {
     super(data);
   }

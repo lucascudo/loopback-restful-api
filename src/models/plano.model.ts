@@ -22,7 +22,6 @@ export class Plano extends Entity {
   })
   preco: number;
 
-
   constructor(data?: Partial<Plano>) {
     super(data);
   }

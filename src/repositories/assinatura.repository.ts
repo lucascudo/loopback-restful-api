@@ -8,9 +8,7 @@ export class AssinaturaRepository extends DefaultCrudRepository<
   typeof Assinatura.prototype.id,
   AssinaturaRelations
 > {
-  constructor(
-    @inject('datasources.db') dataSource: DbDataSource,
-  ) {
+  constructor(@inject('datasources.db') dataSource: DbDataSource) {
     super(Assinatura, dataSource);
   }
 }

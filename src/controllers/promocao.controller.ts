@@ -22,7 +22,7 @@ import {PromocaoRepository} from '../repositories';
 export class PromocaoController {
   constructor(
     @repository(PromocaoRepository)
-    public promocaoRepository : PromocaoRepository,
+    public promocaoRepository: PromocaoRepository,
   ) {}
 
   @post('/promocaos', {
@@ -46,7 +46,8 @@ export class PromocaoController {
     },
   })
   async count(
-    @param.query.object('where', getWhereSchemaFor(Promocao)) where?: Where<Promocao>,
+    @param.query.object('where', getWhereSchemaFor(Promocao))
+    where?: Where<Promocao>,
   ): Promise<Count> {
     return await this.promocaoRepository.count(where);
   }
@@ -64,7 +65,8 @@ export class PromocaoController {
     },
   })
   async find(
-    @param.query.object('filter', getFilterSchemaFor(Promocao)) filter?: Filter<Promocao>,
+    @param.query.object('filter', getFilterSchemaFor(Promocao))
+    filter?: Filter<Promocao>,
   ): Promise<Promocao[]> {
     return await this.promocaoRepository.find(filter);
   }
@@ -79,7 +81,8 @@ export class PromocaoController {
   })
   async updateAll(
     @requestBody() promocao: Promocao,
-    @param.query.object('where', getWhereSchemaFor(Promocao)) where?: Where<Promocao>,
+    @param.query.object('where', getWhereSchemaFor(Promocao))
+    where?: Where<Promocao>,
   ): Promise<Count> {
     return await this.promocaoRepository.updateAll(promocao, where);
   }

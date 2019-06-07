@@ -16,8 +16,8 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
-import { Cliente, Assinatura } from '../models';
-import { ClienteRepository, AssinaturaRepository } from '../repositories';
+import {Cliente, Assinatura} from '../models';
+import {ClienteRepository, AssinaturaRepository} from '../repositories';
 
 export class ClienteController {
   constructor(
@@ -25,13 +25,13 @@ export class ClienteController {
     public clienteRepository: ClienteRepository,
     @repository(AssinaturaRepository)
     public assinaturaRepository: AssinaturaRepository,
-  ) { }
+  ) {}
 
   @post('/clientes', {
     responses: {
       '200': {
         description: 'Cliente model instance',
-        content: { 'application/json': { schema: { 'x-ts-type': Cliente } } },
+        content: {'application/json': {schema: {'x-ts-type': Cliente}}},
       },
     },
   })
@@ -43,12 +43,13 @@ export class ClienteController {
     responses: {
       '200': {
         description: 'Cliente model count',
-        content: { 'application/json': { schema: CountSchema } },
+        content: {'application/json': {schema: CountSchema}},
       },
     },
   })
   async count(
-    @param.query.object('where', getWhereSchemaFor(Cliente)) where?: Where<Cliente>,
+    @param.query.object('where', getWhereSchemaFor(Cliente))
+    where?: Where<Cliente>,
   ): Promise<Count> {
     return await this.clienteRepository.count(where);
   }
@@ -59,14 +60,15 @@ export class ClienteController {
         description: 'Array of Cliente model instances',
         content: {
           'application/json': {
-            schema: { type: 'array', items: { 'x-ts-type': Cliente } },
+            schema: {type: 'array', items: {'x-ts-type': Cliente}},
           },
         },
       },
     },
   })
   async find(
-    @param.query.object('filter', getFilterSchemaFor(Cliente)) filter?: Filter<Cliente>,
+    @param.query.object('filter', getFilterSchemaFor(Cliente))
+    filter?: Filter<Cliente>,
   ): Promise<Cliente[]> {
     return await this.clienteRepository.find(filter);
   }
@@ -75,13 +77,14 @@ export class ClienteController {
     responses: {
       '200': {
         description: 'Cliente PATCH success count',
-        content: { 'application/json': { schema: CountSchema } },
+        content: {'application/json': {schema: CountSchema}},
       },
     },
   })
   async updateAll(
     @requestBody() cliente: Cliente,
-    @param.query.object('where', getWhereSchemaFor(Cliente)) where?: Where<Cliente>,
+    @param.query.object('where', getWhereSchemaFor(Cliente))
+    where?: Where<Cliente>,
   ): Promise<Count> {
     return await this.clienteRepository.updateAll(cliente, where);
   }
@@ -90,7 +93,7 @@ export class ClienteController {
     responses: {
       '200': {
         description: 'Cliente model instance',
-        content: { 'application/json': { schema: { 'x-ts-type': Cliente } } },
+        content: {'application/json': {schema: {'x-ts-type': Cliente}}},
       },
     },
   })
@@ -141,7 +144,7 @@ export class ClienteController {
     responses: {
       '200': {
         description: 'Cliente model instance',
-        content: { 'application/json': { schema: { 'x-ts-type': Cliente } } },
+        content: {'application/json': {schema: {'x-ts-type': Cliente}}},
       },
     },
   })

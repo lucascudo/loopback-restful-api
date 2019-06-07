@@ -8,9 +8,7 @@ export class PromocaoRepository extends DefaultCrudRepository<
   typeof Promocao.prototype.id,
   PromocaoRelations
 > {
-  constructor(
-    @inject('datasources.db') dataSource: DbDataSource,
-  ) {
+  constructor(@inject('datasources.db') dataSource: DbDataSource) {
     super(Promocao, dataSource);
   }
 }

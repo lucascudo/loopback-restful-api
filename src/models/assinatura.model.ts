@@ -1,7 +1,7 @@
-import { Entity, model, property } from '@loopback/repository';
-import { Cliente, Cartao, Produto } from '.';
+import {Entity, model, property} from '@loopback/repository';
+import {Cliente, Cartao, Produto} from '.';
 
-@model({ settings: {} })
+@model({settings: {}})
 export class Assinatura extends Entity {
   @property({
     type: 'string',
@@ -39,4 +39,3 @@ export interface AssinaturaRelations {
 }
 
 export type AssinaturaWithRelations = Assinatura & AssinaturaRelations;
-

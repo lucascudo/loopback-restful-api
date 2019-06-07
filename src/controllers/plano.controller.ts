@@ -22,7 +22,7 @@ import {PlanoRepository} from '../repositories';
 export class PlanoController {
   constructor(
     @repository(PlanoRepository)
-    public planoRepository : PlanoRepository,
+    public planoRepository: PlanoRepository,
   ) {}
 
   @post('/planos', {
@@ -64,7 +64,8 @@ export class PlanoController {
     },
   })
   async find(
-    @param.query.object('filter', getFilterSchemaFor(Plano)) filter?: Filter<Plano>,
+    @param.query.object('filter', getFilterSchemaFor(Plano))
+    filter?: Filter<Plano>,
   ): Promise<Plano[]> {
     return await this.planoRepository.find(filter);
   }
