@@ -172,8 +172,9 @@ export class ClienteController {
       name: cliente.nome,
       email: cliente.email,
     });
-    await data.produtos.forEach(async produto => {
+    data.produtos.forEach(async produto => {
       if (produto.tipo === 'plano') {
+        /*eslint-disable @typescript-eslint/camelcase*/
         const plano = await this.planoRepository.findById(produto.plano_id);
         const mundipaggOrder = await this.mundipaggService.createOrder({
           customer_id: cliente.mundipaggCustomer.id,
@@ -197,6 +198,7 @@ export class ClienteController {
           ],
         });
         cliente.orders.push(mundipaggOrder);
+        /*eslint-enable @typescript-eslint/camelcase*/
       }
     });
     cliente = await this.clienteRepository.create(cliente);
