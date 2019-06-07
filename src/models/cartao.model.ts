@@ -26,6 +26,8 @@ export class Cartao extends Entity {
   })
   expiracao_ano: number;
 
+  // TODO: Add holder name
+
   constructor(data?: Partial<Cartao>) {
     super(data);
   }

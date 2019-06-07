@@ -192,7 +192,12 @@ export class ClienteController {
                 recurrence: true,
                 installments: 1,
                 statement_descriptor: 'SANARFLIX',
-                card: cliente.cartao,
+                card: {
+                  number: data.cartao.numero,
+                  exp_month: data.cartao.expiracao_mes,
+                  exp_year: data.cartao.expiracao_ano,
+                  cvv: data.cartao.cvv,
+                },
               },
             },
           ],
