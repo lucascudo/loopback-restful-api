@@ -2,7 +2,7 @@
   "ids": {
     "Assinatura": 1,
     "Cliente": 2,
-    "Plano": 1,
+    "Plano": 2,
     "Promocao": 1
   },
   "models": {
@@ -10,7 +10,9 @@
     "Cliente": {
       "lucasrochabr@outlook.com": "{\"email\":\"lucasrochabr@outlook.com\",\"nome\":\"Lucas Rocha\"}"
     },
-    "Plano": {},
+    "Plano": {
+      "1": "{\"nome\":\"basico\", \"preco\":\"24.5\"}"
+    },
     "Promocao": {}
   }
 }
