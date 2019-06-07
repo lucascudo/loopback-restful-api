@@ -1,17 +1,14 @@
 {
   "ids": {
-    "Assinatura": 2,
-    "Cliente": 3,
+    "Assinatura": 1,
+    "Cliente": 2,
     "Plano": 2,
     "Promocao": 1
   },
   "models": {
-    "Assinatura": {
-      "1": "{\"cliente\":{\"nome\":\"teste\",\"email\":\"teste@teste.com\"},\"cartao\":{\"numero\":123456789,\"expiracao_mes\":12,\"expiracao_ano\":2019,\"cvv\":\"123\"},\"produtos\":[{\"tipo\":\"plano\",\"plano_id\":\"1\"}],\"id\":\"1\"}"
-    },
+    "Assinatura": {},
     "Cliente": {
       "lucasrochabr@outlook.com": "{\"email\":\"lucasrochabr@outlook.com\",\"nome\":\"Lucas Rocha\"}",
-      "teste@teste.com": "{\"nome\":\"teste\",\"email\":\"teste@teste.com\",\"cartao\":{\"numero\":123456789,\"expiracao_mes\":12,\"expiracao_ano\":2019,\"cvv\":\"123\"},\"mundipaggCustomer\":[{\"id\":\"cus_DbnPpvlckHY5qB2E\",\"name\":\"teste\",\"email\":\"teste@teste.com\",\"delinquent\":false,\"created_at\":\"2018-09-20T22:27:40Z\",\"updated_at\":\"2018-09-20T22:27:40Z\",\"phones\":{}}],\"orders\":[]}"
     },
     "Plano": {
       "1": "{\"id\": \"1\", \"nome\":\"basico\", \"preco\":\"25\"}"
