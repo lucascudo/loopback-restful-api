@@ -25,7 +25,7 @@ export class PromocaoController {
     public promocaoRepository: PromocaoRepository,
   ) {}
 
-  @post('/promocaos', {
+  @post('/promocoes', {
     responses: {
       '200': {
         description: 'Promocao model instance',
@@ -37,7 +37,7 @@ export class PromocaoController {
     return await this.promocaoRepository.create(promocao);
   }
 
-  @get('/promocaos/count', {
+  @get('/promocoes/count', {
     responses: {
       '200': {
         description: 'Promocao model count',
@@ -52,7 +52,7 @@ export class PromocaoController {
     return await this.promocaoRepository.count(where);
   }
 
-  @get('/promocaos', {
+  @get('/promocoes', {
     responses: {
       '200': {
         description: 'Array of Promocao model instances',
@@ -71,7 +71,7 @@ export class PromocaoController {
     return await this.promocaoRepository.find(filter);
   }
 
-  @patch('/promocaos', {
+  @patch('/promocoes', {
     responses: {
       '200': {
         description: 'Promocao PATCH success count',
@@ -87,7 +87,7 @@ export class PromocaoController {
     return await this.promocaoRepository.updateAll(promocao, where);
   }
 
-  @get('/promocaos/{id}', {
+  @get('/promocoes/{id}', {
     responses: {
       '200': {
         description: 'Promocao model instance',
@@ -99,7 +99,7 @@ export class PromocaoController {
     return await this.promocaoRepository.findById(id);
   }
 
-  @patch('/promocaos/{id}', {
+  @patch('/promocoes/{id}', {
     responses: {
       '204': {
         description: 'Promocao PATCH success',
@@ -113,7 +113,7 @@ export class PromocaoController {
     await this.promocaoRepository.updateById(id, promocao);
   }
 
-  @put('/promocaos/{id}', {
+  @put('/promocoes/{id}', {
     responses: {
       '204': {
         description: 'Promocao PUT success',
@@ -127,7 +127,7 @@ export class PromocaoController {
     await this.promocaoRepository.replaceById(id, promocao);
   }
 
-  @del('/promocaos/{id}', {
+  @del('/promocoes/{id}', {
     responses: {
       '204': {
         description: 'Promocao DELETE success',
