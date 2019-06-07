@@ -21,6 +21,11 @@ export class Cliente extends Entity {
   })
   cartao?: Cartao;
 
+  @property({
+    type: 'object',
+  })
+  mundipaggCustomer?: object;
+
   constructor(data?: Partial<Cliente>) {
     super(data);
   }

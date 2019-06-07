@@ -15,9 +15,12 @@ import {
   put,
   del,
   requestBody,
+  HttpErrors,
 } from '@loopback/rest';
+import {inject} from '@loopback/core';
 import {Cliente, Assinatura} from '../models';
 import {ClienteRepository, AssinaturaRepository} from '../repositories';
+import {MundipaggService} from '../services';
 
 export class ClienteController {
   constructor(
@@ -25,6 +28,8 @@ export class ClienteController {
     public clienteRepository: ClienteRepository,
     @repository(AssinaturaRepository)
     public assinaturaRepository: AssinaturaRepository,
+    @inject('services.MundipaggService')
+    protected mundipaggService: MundipaggService,
   ) {}
 
   @post('/clientes', {
@@ -140,7 +145,7 @@ export class ClienteController {
     await this.clienteRepository.deleteById(id);
   }
 
-  @post('/clientes/sign', {
+  @post('/clientes/assinar', {
     responses: {
       '200': {
         description: 'Cliente model instance',
@@ -150,7 +155,17 @@ export class ClienteController {
   })
   async sign(@requestBody() data: Assinatura): Promise<Cliente> {
     let cliente: Cliente = Object.assign({}, data.cliente);
+    if (!cliente.nome) {
+      throw new HttpErrors.BadRequest('nome é obrigatório');
+    }
+    if (!cliente.email) {
+      throw new HttpErrors.BadRequest('email é obrigatório');
+    }
     cliente.cartao = data.cartao;
+    cliente.mundipaggCustomer = await this.mundipaggService.createCustomer({
+      name: cliente.nome,
+      email: cliente.email,
+    });
     cliente = await this.clienteRepository.create(cliente);
     this.assinaturaRepository.create(data);
     return cliente;

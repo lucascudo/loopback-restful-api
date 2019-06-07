@@ -1,0 +1,28 @@
+{
+  "name": "mundipagg",
+  "connector": "rest",
+  "baseURL": "https://api.mundipagg.com/core/v1/",
+  "crud": false,
+  "options": {
+    "headers": {
+      "accept": "application/json",
+      "content-type": "application/json",
+      "Authorization": "Basic c2tfdGVzdF9SWXdtNndCY01qdDM4N25iOg=="
+    }
+  },
+  "operations": [
+    {
+      "template": {
+        "method": "POST",
+        "url": "https://api.mundipagg.com/core/v1/customers",
+        "body": "{customer}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "createCustomer": [
+          "customer"
+        ]
+      }
+    }
+  ]
+}

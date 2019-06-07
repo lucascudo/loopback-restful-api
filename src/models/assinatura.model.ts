@@ -6,7 +6,6 @@ export class Assinatura extends Entity {
   @property({
     type: 'string',
     id: true,
-    required: true,
   })
   id: string;
 
