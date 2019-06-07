@@ -11,7 +11,7 @@
       "lucasrochabr@outlook.com": "{\"email\":\"lucasrochabr@outlook.com\",\"nome\":\"Lucas Rocha\"}"
     },
     "Plano": {
-      "1": "{\"nome\":\"basico\", \"preco\":\"24.5\"}"
+      "1": "{\"id\": \"1\", \"nome\":\"basico\", \"preco\":\"24.5\"}"
     },
     "Promocao": {}
   }
