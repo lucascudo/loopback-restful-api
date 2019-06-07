@@ -8,7 +8,7 @@
   "models": {
     "Assinatura": {},
     "Cliente": {
-      "lucasrochabr@outlook.com": "{\"email\":\"lucasrochabr@outlook.com\",\"nome\":\"Lucas Rocha\"}",
+      "lucasrochabr@outlook.com": "{\"email\":\"lucasrochabr@outlook.com\",\"nome\":\"Lucas Rocha\"}"
     },
     "Plano": {
       "1": "{\"id\": \"1\", \"nome\":\"basico\", \"preco\":\"25\"}"
