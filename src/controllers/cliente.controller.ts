@@ -197,6 +197,7 @@ export class ClienteController {
                   exp_month: data.cartao.expiracao_mes,
                   exp_year: data.cartao.expiracao_ano,
                   cvv: data.cartao.cvv,
+                  holder_name: data.cartao.portador,
                 },
               },
             },
