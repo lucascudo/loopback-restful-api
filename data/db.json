@@ -2,14 +2,16 @@
   "ids": {
     "Assinatura": 1,
     "Cliente": 1,
-    "Plano": 2,
+    "Plano": 4,
     "Promocao": 1
   },
   "models": {
     "Assinatura": {},
     "Cliente": {},
     "Plano": {
-      "1": "{\"id\": \"1\", \"nome\":\"BASICO\", \"preco\":\"25\"}"
+      "basico": "{\"id\": \"basico\", \"nome\":\"BASICO\", \"preco\":\"2450\", \"intervalo\":\"1\"}",
+      "basico_amostra": "{\"id\": \"basico_amostra\", \"nome\":\"BASICO COM AMOSTRA GRATIS\", \"preco\":\"2450\", \"intervalo\":\"1\", \"saltar_dias\":\"7\"}",
+      "basico_trimestral": "{\"id\": \"basico_trimestral\", \"nome\":\"BASICO TRIMESTRAL\", \"preco\":\"6990\", \"intervalo\":\"3\"}"
     },
     "Promocao": {}
   }
