@@ -9,7 +9,7 @@
     "Assinatura": {},
     "Cliente": {},
     "Plano": {
-      "1": "{\"id\": \"1\", \"nome\":\"Básico\", \"preco\":\"25\"}"
+      "1": "{\"id\": \"1\", \"nome\":\"BASICO\", \"preco\":\"25\"}"
     },
     "Promocao": {}
   }
