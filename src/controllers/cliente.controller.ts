@@ -18,7 +18,7 @@ import {
   HttpErrors,
 } from '@loopback/rest';
 import {inject} from '@loopback/core';
-import {Cliente, Assinatura} from '../models';
+import {Cliente, Assinatura, Plano, MundipaggSubscription} from '../models';
 import {
   ClienteRepository,
   AssinaturaRepository,
@@ -159,7 +159,11 @@ export class ClienteController {
       },
     },
   })
-  async sign(@requestBody() data: Assinatura): Promise<Cliente> {
+  async assinar(@requestBody() data: Assinatura): Promise<Cliente> {
+    let startAt: Date;
+    let subscription: object;
+    let plano: Plano;
+    let mundipaggSubscription: MundipaggSubscription;
     let cliente: Cliente = Object.assign({}, data.cliente);
     if (!cliente.nome) {
       throw new HttpErrors.BadRequest('nome é obrigatório');
@@ -172,41 +176,49 @@ export class ClienteController {
       name: cliente.nome,
       email: cliente.email,
     });
-    data.produtos.forEach(async produto => {
-      if (produto.tipo === 'plano') {
-        /*eslint-disable @typescript-eslint/camelcase*/
-        const plano = await this.planoRepository.findById(produto.plano_id);
-        const mundipaggOrder = await this.mundipaggService.createOrder({
-          customer_id: cliente.mundipaggCustomer.id,
-          items: [
-            {
-              amount: plano.preco,
-              description: plano.nome,
-              quantity: 1,
-            },
-          ],
-          payments: [
-            {
-              payment_method: 'credit_card',
-              credit_card: {
-                recurrence: true,
-                installments: 1,
-                statement_descriptor: 'SANARFLIX',
-                card: {
-                  number: data.cartao.numero,
-                  exp_month: data.cartao.expiracao_mes,
-                  exp_year: data.cartao.expiracao_ano,
-                  cvv: data.cartao.cvv,
-                  holder_name: data.cartao.portador,
-                },
-              },
-            },
-          ],
-        });
-        cliente.orders.push(mundipaggOrder);
-        /*eslint-enable @typescript-eslint/camelcase*/
+    cliente.subscriptions = [];
+    data.produtos = data.produtos.filter(produto => produto.tipo === 'plano');
+    for (const i in data.produtos) {
+      /*eslint-disable @typescript-eslint/camelcase*/
+      plano = await this.planoRepository.findById(data.produtos[i].plano_id);
+      startAt = new Date();
+      if (plano.saltarDias) {
+        startAt.setDate(startAt.getDate() + plano.saltarDias);
       }
-    });
+      subscription = {
+        code: cliente.mundipaggCustomer.id + '_' + plano.id,
+        customer_id: cliente.mundipaggCustomer.id,
+        currency: 'BRL',
+        interval: 'month',
+        interval_count: plano.intervalo,
+        billing_type: 'prepaid',
+        installments: 1,
+        minimun_price: plano.preco,
+        start_at: startAt.toJSON(),
+        payment_method: 'credit_card',
+        card: {
+          number: data.cartao.numero,
+          exp_month: data.cartao.expiracao_mes,
+          exp_year: data.cartao.expiracao_ano,
+          cvv: data.cartao.cvv,
+          holder_name: data.cartao.dono,
+        },
+        items: [
+          {
+            description: plano.nome,
+            quantity: 1,
+            pricing_scheme: {
+              price: plano.preco,
+            },
+          },
+        ],
+      };
+      mundipaggSubscription = await this.mundipaggService.createSubscription(
+        subscription,
+      );
+      cliente.subscriptions.push(mundipaggSubscription);
+      /*eslint-enable @typescript-eslint/camelcase*/
+    }
     cliente = await this.clienteRepository.create(cliente);
     this.assinaturaRepository.create(data);
     return cliente;

@@ -1,5 +1,10 @@
 import {Entity, model, property} from '@loopback/repository';
-import {Cartao, MundipaggCustomer} from '.';
+import {
+  Cartao,
+  MundipaggCustomer,
+  MundipaggOrder,
+  MundipaggSubscription,
+} from '.';
 
 @model({settings: {}})
 export class Cliente extends Entity {
@@ -18,8 +23,9 @@ export class Cliente extends Entity {
 
   @property({
     type: 'object',
+    required: true,
   })
-  cartao?: Cartao;
+  cartao: Cartao;
 
   @property({
     type: 'object',
@@ -31,7 +37,14 @@ export class Cliente extends Entity {
     itemType: 'object',
     default: [],
   })
-  orders: Array<object>;
+  orders: MundipaggOrder[];
+
+  @property({
+    type: 'array',
+    itemType: 'object',
+    default: [],
+  })
+  subscriptions: MundipaggSubscription[];
 
   constructor(data?: Partial<Cliente>) {
     super(data);

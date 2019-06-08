@@ -5,3 +5,5 @@ export * from './plano.model';
 export * from './produto.model';
 export * from './promocao.model';
 export * from './mundipaggcustomer.model';
+export * from './mundipaggorder.model';
+export * from './mundipaggsubscription.model';

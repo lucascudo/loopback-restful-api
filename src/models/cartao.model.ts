@@ -30,7 +30,7 @@ export class Cartao extends Entity {
     type: 'string',
     required: true,
   })
-  portador: string;
+  dono: string;
 
   constructor(data?: Partial<Cartao>) {
     super(data);

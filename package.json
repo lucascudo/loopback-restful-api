@@ -55,7 +55,8 @@
     "@loopback/rest": "^1.15.0",
     "@loopback/rest-explorer": "^1.2.1",
     "@loopback/service-proxy": "^1.2.1",
-    "loopback-connector-rest": "^3.4.1"
+    "loopback-connector-rest": "^3.4.1",
+    "npm": "^6.9.0"
   },
   "devDependencies": {
     "@loopback/build": "^1.7.1",

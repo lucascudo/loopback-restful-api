@@ -21,6 +21,18 @@ export class Plano extends Entity {
   })
   preco: number;
 
+  @property({
+    type: 'number',
+    required: true,
+    default: 1,
+  })
+  intervalo: number;
+
+  @property({
+    type: 'number',
+  })
+  saltarDias?: number;
+
   constructor(data?: Partial<Plano>) {
     super(data);
   }
